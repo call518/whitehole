@@ -1061,7 +1061,7 @@ mysql_select_db($mysql_db);
 </div>
 
 <!-- Dialog 내용들 시작 : View Secondary Storage -->
-<p><div id="view_storage_secondary" title="View Detail Info: Primary Storage">
+<p><div id="view_storage_secondary" title="View Detail Info: Secondary Storage">
 <?
 $loguser=@$member['mb_id'];
 $db_host = "localhost";
