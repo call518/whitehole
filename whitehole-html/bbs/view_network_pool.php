@@ -2,7 +2,7 @@
 <?
 include "../db_conn.php";
 include "../functions.php";
-include "../check_admin.php";
+include "./check_admin.php";
 
 
 $query="select * from network_pool";

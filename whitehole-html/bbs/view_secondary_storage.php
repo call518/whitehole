@@ -2,7 +2,7 @@
 <?
 include "../db_conn.php";
 include "../functions.php";
-include "../check_admin.php";
+include "./check_admin.php";
 
 //$ssh_host = "192.168.100.122";
 
