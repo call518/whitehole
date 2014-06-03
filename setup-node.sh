@@ -5,11 +5,16 @@ if [ "`whoami`" != "root" ]; then
 	exit 1
 fi
 
+LSB=`lsb_release -c | awk '{print $2}'`
+if [ "$LSB" != "precise"] && [ "$LSB" != "raring" ]; then
+	echo "Sorry, Your Ubuntu is not 'precise (or raring)!!"
+	exit 1
+fi
 SRC_DIR=`pwd`
 LOCAL_IP=`/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
 GATEWAY=`/sbin/route -n | grep 'UG' | awk '{ print $2}'`
 NETMASK=`/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f4 | awk '{ print $1}'`
-DNS="@_DNS_@"
+DNS="172.21.18.51"
 
 RESET="\033[0m"
 

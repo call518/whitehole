@@ -89,12 +89,12 @@ Installation
 
 ### Requirement for Management Web Server
 
-	Clean Installed Ubuntu 13.04
+	Clean Installed Ubuntu 12.04 (or 13.04)
 	apt-get
 
 ### Requirement for Physical(Compute) Node
 
-	Clean Installed Ubuntu 13.04
+	Clean Installed Ubuntu 12.04 (or 13.04)
 	apt-get
 	libvirt, screen, socat, kvm, nfs-common, openssh-server
 

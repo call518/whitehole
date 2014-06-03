@@ -5,6 +5,11 @@ if [ "`whoami`" != "root" ]; then
 	exit 1
 fi
 
+LSB=`lsb_release -c | awk '{print $2}'`
+if [ "$LSB" != "precise"] && [ "$LSB" != "raring" ]; then
+	echo "Sorry, Your Ubuntu is not 'precise (or raring)!!"
+	exit 1
+fi
 SRC_DIR=`pwd`
 HTML_DIR="/var/www/html"
 SSH_KEY_DIR="/var/www/.ssh"
@@ -62,7 +67,7 @@ echo
 reset_color
 
 msg "Set Dynamic DNS"
-echo -n -e "$YELLOW Input your domain-name (if not exist, then input 'test.org'): "
+echo -n -e "$YELLOW Input your domain-name (default: 'test.org'): "
 read DOMAIN_NAME
 reset_color
 
@@ -93,7 +98,11 @@ apt-get update
 
 cd $SRC_DIR
 msg "Install Packages for Whitehole"
+if [ "$LSB" == "precise" ]; then
+apt-get -y install make apache2 libapache2-mod-php5 libssh2-php libssh2-1 libssh2-1-dbg libssh2-1-dev php5 php5-dev php5-cli php5-common php5-curl php5-gd php5-imagick php5-mysql php5-snmp php5-xmlrpc mysql-server mysql-client bind9 snmp smistrip snmpd mrtg nfs-common libvirt-dev libxml2 libxml2-dev libxml2-utils xsltproc bind9 bind9utils virt-manager qemu-utils kpartx libguestfs-tools parted
+else
 apt-get -y install make apache2 libapache2-mod-php5 libssh2-php libssh2-1 libssh2-1-dbg libssh2-1-dev php5 php5-dev php5-cli php5-common php5-curl php5-gd php5-imagick php5-mysql php5-snmp php5-xmlrpc mysql-server mysql-client bind9 snmp snmp-mibs-downloader snmpd mrtg nfs-common libvirt-dev libxml2 libxml2-dev libxml2-utils xsltproc bind9 bind9utils virt-manager qemu-utils kpartx libguestfs-tools parted
+fi
 mysqladmin -u root password $mysql_pw_1
 
 cd $SRC_DIR
