@@ -6,7 +6,7 @@ if [ "`whoami`" != "root" ]; then
 fi
 
 LSB=`lsb_release -c | awk '{print $2}'`
-if [ "$LSB" != "precise"] && [ "$LSB" != "raring" ]; then
+if [ "$LSB" != "precise" -a "$LSB" != "raring" ]; then
 	echo "Sorry, Your Ubuntu is not 'precise (or raring)!!"
 	exit 1
 fi
