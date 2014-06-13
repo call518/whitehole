@@ -13,7 +13,7 @@ fi
 SRC_DIR=`pwd`
 HTML_DIR="/var/www/html"
 SSH_KEY_DIR="/var/www/.ssh"
-LOCAL_IP=`/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
+#LOCAL_IP=`/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
 
 RESET="\033[0m"
 
@@ -56,6 +56,15 @@ alert_msg() {
 }
 
 export DEBIAN_FRONTEND=noninteractive
+
+msg "Input Local IP-Address"
+echo -n -e "$YELLOW Input Local IP-Address: "
+read -s LOCAL_IP
+echo
+echo -n -e "$YELLOW Input Local IP-Address (again): "
+read -s LOCAL_IP
+echo
+reset_color
 
 msg "Input MySQL root password"
 echo -n -e "$YELLOW Input MySQL root's password: "
