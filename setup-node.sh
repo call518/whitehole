@@ -11,7 +11,7 @@ if [ "$LSB" != "precise" -a "$LSB" != "raring" ]; then
 	exit 1
 fi
 SRC_DIR=`pwd`
-LOCAL_IP=`/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
+#LOCAL_IP=`/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f2 | awk '{ print $1}'`
 GATEWAY=`/sbin/route -n | grep 'UG' | awk '{ print $2}'`
 NETMASK=`/sbin/ifconfig eth0 | grep 'inet addr:' | cut -d: -f4 | awk '{ print $1}'`
 DNS="172.21.18.51"
@@ -57,6 +57,15 @@ alert_msg() {
 }
 
 export DEBIAN_FRONTEND=noninteractive
+
+msg "Input Local IP-Address"
+echo -n -e "$YELLOW Input Local IP-Address: "
+read -s LOCAL_IP
+echo
+echo -n -e "$YELLOW Input Local IP-Address (again): "
+read -s LOCAL_IP
+echo
+reset_color
 
 cd $SRC_DIR
 msg "Install Package for Whitehole"
