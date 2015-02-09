@@ -105,14 +105,19 @@ cd $SRC_DIR
 msg "Updata Source List"
 apt-get update
 
+echo "mysql-server mysql-server/root_password password $mysql_pw_1" | debconf-set-selections
+echo "mysql-server mysql-server/root_password_again password $mysql_pw_1" | debconf-set-selections
+DEBIAN_FRONTEND=noninteractive
+
 cd $SRC_DIR
 msg "Install Packages for Whitehole"
 if [ "$LSB" == "precise" ]; then
-apt-get -y install make apache2 libapache2-mod-php5 libssh2-php libssh2-1 libssh2-1-dbg libssh2-1-dev php5 php5-dev php5-cli php5-common php5-curl php5-gd php5-imagick php5-mysql php5-snmp php5-xmlrpc mysql-server mysql-client bind9 snmp smistrip snmpd mrtg nfs-common libvirt-dev libxml2 libxml2-dev libxml2-utils xsltproc bind9 bind9utils virt-manager qemu-utils kpartx libguestfs-tools parted sysstat uuid
+apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install make apache2 libapache2-mod-php5 libssh2-php libssh2-1 libssh2-1-dbg libssh2-1-dev php5 php5-dev php5-cli php5-common php5-curl php5-gd php5-imagick php5-mysql php5-snmp php5-xmlrpc mysql-server mysql-client bind9 snmp smistrip snmpd mrtg nfs-common libvirt-dev libxml2 libxml2-dev libxml2-utils xsltproc bind9 bind9utils virt-manager qemu-utils kpartx libguestfs-tools parted sysstat uuid
 ln -s /usr/bin/uuid /usr/bin/uuidgen
 else
-apt-get -y install make apache2 libapache2-mod-php5 libssh2-php libssh2-1 libssh2-1-dbg libssh2-1-dev php5 php5-dev php5-cli php5-common php5-curl php5-gd php5-imagick php5-mysql php5-snmp php5-xmlrpc mysql-server mysql-client bind9 snmp snmp-mibs-downloader snmpd mrtg nfs-common libvirt-dev libxml2 libxml2-dev libxml2-utils xsltproc bind9 bind9utils virt-manager qemu-utils kpartx libguestfs-tools parted sysstat uuid
+apt-get -y -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" install make apache2 libapache2-mod-php5 libssh2-php libssh2-1 libssh2-1-dbg libssh2-1-dev php5 php5-dev php5-cli php5-common php5-curl php5-gd php5-imagick php5-mysql php5-snmp php5-xmlrpc mysql-server mysql-client bind9 snmp snmp-mibs-downloader snmpd mrtg nfs-common libvirt-dev libxml2 libxml2-dev libxml2-utils xsltproc bind9 bind9utils virt-manager qemu-utils kpartx libguestfs-tools parted sysstat uuid
 fi
+
 mysqladmin -u root password $mysql_pw_1
 
 cd $SRC_DIR
