@@ -97,7 +97,7 @@ Installation
 
 	Clean Installed Ubuntu 12.04 (or 13.04)
 	apt-get
-	libvirt, screen, socat, kvm, nfs-common, openssh-server
+	libvirt, screen, socat, kvm, nfs-common, openssh-server, libpam-krb5
 
 ### Guide for Memangement Node
 
